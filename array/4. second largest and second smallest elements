@@ -1,0 +1,54 @@
+/*
+Problem Statement: Given an array, find the second smallest and second largest element in the array. Print ‘-1’ in the event that either of them doesn’t exist.
+
+Example 1:
+Input: [1,2,4,7,7,5]
+Output: Second Smallest : 2
+	Second Largest : 5
+ 
+Explanation: The elements are as follows 1,2,3,5,7,7 and hence second largest of these is 5 and second smallest is 2
+
+*/
+//Method 1: sort the array, a[1],a[arr_size-2] are the required array
+//Method 2: declare four variables two to track the largest and smallest, another two to trck the second smallest and largest
+
+void second_smallest_largest(int arr[],int n,int* smallest,int* largest){
+
+    if(n<2){
+        *smallest=-1;
+        *largest=-1;
+        return;
+        }
+        
+int smallest= INT_MIN,largest=INT_MAX,second_smallest= INT_MIN,second_largest=INT_MAX;
+
+ for(int i=1;i<n;i++){
+
+ // For largest and second largest
+    if(largest<arr[i]){
+         second_largest=largest;
+         largest=arr[i];
+         }
+    else (second_largest>arr[i]&&arr[i]!=largest){
+         second_largest=arr[i];
+         }
+
+ // For smallest and second smallest
+    if(smallest>=arr[i]){
+         second_smallest=smallest;
+         smallest=arr[i];
+         }
+    else (second_smallest>arr[i]&&arr[i]!=smallest){
+         second_smallest=arr[i];
+    }
+ }
+ 
+ // If second smallest/largest not found
+    if (second_smallest == INT_MAX) {*sec_smallest = -1;}
+         else {*sec_smallest = second_smallest;}
+
+    if (second_largest == INT_MIN) {*sec_largest = -1;}
+        else {*sec_largest = second_largest;}
+
+ return;
+}
