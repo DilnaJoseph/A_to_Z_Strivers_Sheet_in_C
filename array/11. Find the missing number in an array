@@ -1,0 +1,19 @@
+/*
+Problem Statement: Given an integer N and an array of size N-1 containing N-1 numbers between 1 to N. Find the number(between 1 to N), 
+that is not present in the given array.
+
+Example 1:
+Input Format: N = 5, array[] = {1,2,4,5}
+Result: 3
+Explanation: In the given array, number 3 is missing. So, 3 is the answer.
+*/
+
+int missing(int* arr,int n){
+int xor=arr[0],j=0;
+for(int i=1;i<n;i++){
+xor=xor^arr[i];
+j=j^i;
+}
+j^= n; 
+return xor^j;
+}
