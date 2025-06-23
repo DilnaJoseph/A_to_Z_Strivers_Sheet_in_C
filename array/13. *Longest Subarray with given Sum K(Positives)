@@ -1,0 +1,39 @@
+/*
+Problem Statement: Given an array and a sum k, we need to print the length of the longest subarray that sums to k.
+
+
+Example 1:
+Input Format: N = 3, k = 5, array[] = {2,3,5}
+Result: 2
+Explanation: The longest subarray with sum 5 is {2, 3}. And its length is 2.
+*/
+
+// two pointers
+
+int subarray(int* arr,int k,int n){
+int left=0;
+int right=0;
+int max=0;
+int sum=arr[0];
+
+while(right<n){
+
+ // Shrink window from the left if sum > k
+while(left<=right&&sum>k){
+sum-=arr[left++];
+}
+
+// Check if current sum == k
+if(sum==k){
+if(max<right-left+1){
+max=right-left+1;}
+}
+
+ // Expand window to the right
+right++;
+if(right<n){
+sum+=arr[right];}
+
+}
+return max;
+}
