@@ -1,0 +1,32 @@
+/*
+Problem Statement: This problem has 3 variations. They are stated below:
+
+Variation 1: Given row number r and column number c. Print the element at position (r, c) in Pascal’s triangle.
+
+Variation 2: Given the row number n. Print the n-th row of Pascal’s triangle.
+
+Variation 3: Given the number of rows n. Print the first n rows of Pascal’s triangle.
+
+In Pascal’s triangle, each number is the sum of the two numbers directly above it as shown in the figure below:
+
+
+*/
+int** generate(int n, int* returnSize, int** returnColumnSizes) {
+       int** arr = (int**)malloc(n * sizeof(int*));
+        *returnColumnSizes = (int*)malloc(n * sizeof(int));
+
+    for(int i=0;i<n;i++){
+
+          arr[i] = (int*)malloc((i + 1) * sizeof(int)); 
+        (*returnColumnSizes)[i] = i + 1;
+
+            arr[i][0]=1;
+            arr[i][i]=1;
+        for(int j=1;j<i;j++){
+            arr[i][j]=arr[i-1][j-1]+arr[i-1][j];
+        }
+    }
+
+    *returnSize=n;
+    return arr;
+}
